@@ -5,8 +5,8 @@ module.exports = function deepFreeze (o) {
   var hasOwnProp = Object.prototype.hasOwnProperty;
 
   Object.getOwnPropertyNames(o).forEach(function (prop) {
-    if (hasOwnProp.call(o, prop)
-    && (oIsFunction ? prop !== 'caller' && prop !== 'callee' && prop !== 'arguments' : true )
+    if ((oIsFunction ? prop !== 'caller' && prop !== 'callee' && prop !== 'arguments' : true)
+    && hasOwnProp.call(o, prop)
     && o[prop] !== null
     && (typeof o[prop] === "object" || typeof o[prop] === "function")
     && !Object.isFrozen(o[prop])) {
